@@ -1,6 +1,7 @@
-mod guessing_game;
+use crate::Coin::Quarter;
+use crate::UsState::Iowa;
 
-use crate::Coin::{Penny, Quarter};
+mod guessing_game;
 
 #[derive(Debug)]
 struct Rectangle {
@@ -112,7 +113,41 @@ fn value_in_cents(coin: Coin) -> u8 {
     }
 }
 
+fn count_coins_number(coin: Coin) -> u8 {
+    // let mut count = 0;
+    // match coin {
+    //     Coin::Quarter(state) => println!("State quarter from {:?}!", state),
+    //     _ => count += 1,
+    // }
+
+    let mut count = 0;
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        count += 1;
+    }
+    count
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+
 fn main() {
-    println!("{}", value_in_cents(Quarter(UsState::Iowa)));
-    guessing_game();
+    println!("{}", value_in_cents(Quarter(Iowa)));
+    let five = Some(5);
+    let six = plus_one(five);
+    println!("{}", six.unwrap());
+
+    let config_max = Some(3u8);
+    // match config_max {
+    //     Some(max) => println!("The maximum is configured to be {}", max),
+    //     _ => (),
+    // }
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
+    }
 }

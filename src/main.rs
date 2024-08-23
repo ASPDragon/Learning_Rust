@@ -24,50 +24,25 @@ pub fn eat_at_restaurant() {
 // }
 
 fn main() {
-    println!("{}", structEnums::value_in_cents(Coin::Quarter(UsState::Iowa)));
-    let five = Some(5);
-    let six = structEnums::plus_one(five);
-    println!("{}", six.unwrap());
-
-    let config_max = Some(3u8);
-    // match config_max {
-    //     Some(max) => println!("The maximum is configured to be {}", max),
-    //     _ => (),
-    // }
-    if let Some(max) = config_max {
-        println!("The maximum is configured to be {}", max);
-    }
-
+    println!("Task one:");
+    let mut v = vec![ 1, 13, 5, 100, 13, 35, 42 ];
+    v.sort();
+    let med: i32 = v[v.len() / 2];
+    println!("The median is: {med}");
     let mut map = HashMap::new();
-    map.insert(1, 2);
 
-    let v = vec![1, 2, 3, 4, 5];
-
-    let third: &i32 = &v[2];
-    println!("The third element is {third}");
-
-    let third: Option<&i32> = v.get(2);
-    match third {
-        Some(third) => println!("The third element is {third}"),
-        None => println!("There is no third element."),
+    for i in v {
+        let count = map.entry(i).or_insert(0);
+        *count += 1;
     }
 
-    // let mut s = String::new();
+    // Find the key/value pair with the maximum value
+    let max_pair = map.iter().max_by_key(|entry| entry.1);
 
-    let mut s1 = String::from("Hello, ");
-    let s2 = String::from("world!");
-
-    s1 += &s2;
-
-    println!("{s1}");
-
-    let hello = "Здравствуйте";
-
-    let s = &hello[0..4];
-
-    println!("{s}");
-
-    for c in hello.chars() {
-        println!("{c}");
+    if let Some((key, value)) = max_pair {
+        println!("Key with max value: {key}, Value: {value}");
+    } else {
+        println!("The map is empty.");
     }
+    println!("\nTask two:");
 }

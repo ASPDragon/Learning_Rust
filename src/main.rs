@@ -45,4 +45,10 @@ fn main() {
         println!("The map is empty.");
     }
     println!("\nTask two:");
+    let mut str = String::from("Hello, Rust! I am doing some exercises!");
+    let vowels = [ 'a', 'e', 'i', 'o', 'u' ];
+
+    for word in str.split_whitespace() {
+        // if word.ends_with()
+    }
 }
